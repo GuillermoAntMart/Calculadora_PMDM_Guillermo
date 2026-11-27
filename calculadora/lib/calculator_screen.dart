@@ -12,3 +12,25 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   double primerNumero = 0;
   String operador = '';
   bool reiniciarPantalla = false;
+
+  void pulsarNumero(String numero) {
+    setState(() {
+      if (display == '0' || display == 'Error' || reiniciarPantalla) {
+        display = numero;
+        reiniciarPantalla = false;
+      } else {
+        display = display + numero;
+      }
+    });
+  }
+
+  void pulsarComa() {
+    setState(() {
+      if (reiniciarPantalla || display == 'Error') {
+        display = '0,';
+        reiniciarPantalla = false; 
+      } else if (!display.contains(',')) {
+        display = display + ',';
+      }
+    });
+  }
